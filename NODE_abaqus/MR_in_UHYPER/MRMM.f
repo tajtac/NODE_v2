@@ -1,0 +1,24 @@
+      SUBROUTINE UHYPER(BI1,BI2,AJ,U,UI1,UI2,UI3,TEMP,NOEL,CMNAME,
+     $                  INCMPFLAG,NUMSTATEV,STATEV,NUMFIELDV,
+     $                  FIELDV,FIELDVINC,NUMPROPS,PROPS)
+C
+      INCLUDE 'ABA_PARAM.INC'
+C
+      CHARACTER*80 CMNAME
+      DIMENSION UI1(3),UI2(6),UI3(6),STATEV(*),FIELDV(*),
+     $          FIELDVINC(*),PROPS(*)
+C
+      PARAMETER (ZERO=0.0D0,ONE=1.0D0, TWO=2.0D0, THREE=3.0D0)
+C      
+      C10 = 0.1
+      C01 = 0.0
+      C20 = 0.144
+C
+      U = ZERO
+      UI1(1)=C10 + 2*C20*(BI1-3)
+      UI1(2)=C01
+      UI2 = 0.
+      UI2(1) = 2*C20
+
+      RETURN
+      END

@@ -1,0 +1,76 @@
+# -*- coding: mbcs -*-
+#
+# Abaqus/CAE Release 2021 replay file
+# Internal Version: 2020_03_06-09.50.37 167380
+# Run by vtac on Thu Dec  2 23:49:34 2021
+#
+
+# from driverUtils import executeOnCaeGraphicsStartup
+# executeOnCaeGraphicsStartup()
+#: Executing "onCaeGraphicsStartup()" in the site directory ...
+from abaqus import *
+from abaqusConstants import *
+session.Viewport(name='Viewport: 1', origin=(0.0, 0.0), width=267.794647216797, 
+    height=181.567459106445)
+session.viewports['Viewport: 1'].makeCurrent()
+session.viewports['Viewport: 1'].maximize()
+from caeModules import *
+from driverUtils import executeOnCaeStartup
+executeOnCaeStartup()
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+openMdb(pathName='/home/vtac/UMAT/exp_uaniso.cae')
+#: The model database "/home/vtac/UMAT/exp_uaniso.cae" has been opened.
+session.viewports['Viewport: 1'].setValues(displayedObject=None)
+p = mdb.models['square_expander'].parts['ES_face']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+del session.viewports['Viewport: 1']
+#* CanvasError: SystemError: the current viewport may not be deleted.
+a = mdb.models['square_expander'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.ModelFromInputFile(name='uni_uaniso', 
+    inputFileName='/home/vtac/UMAT/uni_uaniso.inp')
+#: The model "uni_uaniso" has been created.
+#: The part "PART-1" has been imported from the input file.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "uni_uaniso" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(
+    optimizationTasks=OFF, geometricRestrictions=OFF, stopConditions=OFF)
+a = mdb.models['uni_uaniso'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].partDisplay.setValues(sectionAssignments=ON, 
+    engineeringFeatures=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+p = mdb.models['uni_uaniso'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p1 = mdb.models['uni_uaniso'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+p = mdb.models['uni_uaniso'].parts['PART-1']
+e = p.elements
+elements = e.getSequenceFromMask(mask=('[#ffffffff:27 #7 ]', ), )
+region = regionToolset.Region(elements=elements)
+orientation=None
+mdb.models['uni_uaniso'].parts['PART-1'].MaterialOrientation(region=region, 
+    orientationType=SYSTEM, axis=AXIS_3, localCsys=orientation, fieldName='', 
+    additionalRotationType=ROTATION_ANGLE, additionalRotationField='', 
+    angle=30.0, stackDirection=STACK_3)
+#: Specified material orientation has been assigned to the selected regions.
+a = mdb.models['uni_uaniso'].rootAssembly
+a.regenerate()
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.Job(name='uni_aniso', model='uni_uaniso', description='', type=ANALYSIS, 
+    atTime=None, waitMinutes=0, waitHours=0, queue=None, memory=90, 
+    memoryUnits=PERCENTAGE, getMemoryFromAnalysis=True, 
+    explicitPrecision=SINGLE, nodalOutputPrecision=SINGLE, echoPrint=OFF, 
+    modelPrint=OFF, contactPrint=OFF, historyPrint=OFF, userSubroutine='', 
+    scratch='', resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=1, 
+    numGPUs=0)
+mdb.jobs['uni_aniso'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "uni_aniso.inp".
+mdb.jobs['uni_aniso'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "uni_aniso.inp".

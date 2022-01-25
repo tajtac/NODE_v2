@@ -1,0 +1,239 @@
+# -*- coding: mbcs -*-
+#
+# Abaqus/CAE Release 2020 replay file
+# Internal Version: 2019_09_13-13.49.31 163176
+# Run by vtac on Wed Dec 15 19:57:08 2021
+#
+
+# from driverUtils import executeOnCaeGraphicsStartup
+# executeOnCaeGraphicsStartup()
+#: Executing "onCaeGraphicsStartup()" in the site directory ...
+from abaqus import *
+from abaqusConstants import *
+session.Viewport(name='Viewport: 1', origin=(0.0, 0.0), width=263.821441650391, 
+    height=182.096801757812)
+session.viewports['Viewport: 1'].makeCurrent()
+session.viewports['Viewport: 1'].maximize()
+from caeModules import *
+from driverUtils import executeOnCaeStartup
+executeOnCaeStartup()
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+openMdb(pathName='/home/vtac/NODE_abaqus/GOH/exp.cae')
+#: A new model database has been created.
+#: The model "Model-1" has been created.
+session.viewports['Viewport: 1'].setValues(displayedObject=None)
+#* MdbError: incompatible release number, expected 2020, got 2021
+a = mdb.models['Model-1'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.ModelFromInputFile(name='exp', 
+    inputFileName='/home/vtac/NODE_abaqus/GOH/exp.inp')
+#: The model "exp" has been created.
+#: The part "ES_FACE" has been imported from the input file.
+#: The part "ES_WALLS" has been imported from the input file.
+#: The part "SE_SKIN" has been imported from the input file.
+#: The interaction property "FLUID_PROP" has been created.
+#: The interaction "CAVITY" has been created.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "exp" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(
+    optimizationTasks=OFF, geometricRestrictions=OFF, stopConditions=OFF)
+a = mdb.models['exp'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+a = mdb.models['Model-1'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+del mdb.models['Model-1']
+a = mdb.models['exp'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].partDisplay.setValues(sectionAssignments=ON, 
+    engineeringFeatures=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+p1 = mdb.models['exp'].parts['ES_FACE']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+mdb.models['exp'].Material(name='Material-4')
+mdb.models['exp'].materials['Material-4'].Hyperelastic(
+    materialType=ANISOTROPIC, anisotropicType=HOLZAPFEL, localDirections=2, 
+    table=((0.010236, 2.0, 0.51366, 59.1491, 0.274447), ))
+mdb.models['exp'].materials.changeKey(fromName='Material-4', toName='GOH')
+mdb.models['exp'].sections['Section-3-_PICKEDSET2'].setValues(material='GOH', 
+    thickness=None)
+a = mdb.models['exp'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.Job(name='exp', model='exp', description='', type=ANALYSIS, atTime=None, 
+    waitMinutes=0, waitHours=0, queue=None, memory=90, memoryUnits=PERCENTAGE, 
+    getMemoryFromAnalysis=True, explicitPrecision=SINGLE, 
+    nodalOutputPrecision=SINGLE, echoPrint=OFF, modelPrint=OFF, 
+    contactPrint=OFF, historyPrint=OFF, userSubroutine='', scratch='', 
+    resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=1, numGPUs=0)
+mdb.jobs['exp'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "exp.inp".
+del session.viewports['Viewport: 1']
+#* CanvasError: SystemError: the current viewport may not be deleted.
+Mdb()
+#: A new model database has been created.
+#: The model "Model-1" has been created.
+session.viewports['Viewport: 1'].setValues(displayedObject=None)
+a = mdb.models['Model-1'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.ModelFromInputFile(name='uni', 
+    inputFileName='/home/vtac/NODE_abaqus/UANISO/uni.inp')
+#: The model "uni" has been created.
+#: The part "PART-1" has been imported from the input file.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "uni" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+a = mdb.models['uni'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.ModelFromInputFile(name='exp', 
+    inputFileName='/home/vtac/NODE_abaqus/UANISO/exp.inp')
+#: The model "exp" has been created.
+#: The part "ES_FACE" has been imported from the input file.
+#: The part "ES_WALLS" has been imported from the input file.
+#: The part "SE_SKIN" has been imported from the input file.
+#: The interaction property "FLUID_PROP" has been created.
+#: The interaction "CAVITY" has been created.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "exp" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+a = mdb.models['exp'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+a = mdb.models['Model-1'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+del mdb.models['Model-1']
+a = mdb.models['uni'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+p = mdb.models['uni'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p1 = mdb.models['exp'].parts['ES_FACE']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+mdb.models['exp'].Material(name='GOH')
+mdb.models['exp'].materials['GOH'].Hyperelastic(materialType=ANISOTROPIC, 
+    anisotropicType=HOLZAPFEL, localDirections=2, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['exp'].sections['Section-3-_PICKEDSET2'].setValues(material='GOH', 
+    thickness=None)
+p1 = mdb.models['uni'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+del mdb.models['uni']
+p = mdb.models['exp'].parts['ES_FACE']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+a = mdb.models['exp'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.Job(name='exp', model='exp', description='', type=ANALYSIS, atTime=None, 
+    waitMinutes=0, waitHours=0, queue=None, memory=90, memoryUnits=PERCENTAGE, 
+    getMemoryFromAnalysis=True, explicitPrecision=SINGLE, 
+    nodalOutputPrecision=SINGLE, echoPrint=OFF, modelPrint=OFF, 
+    contactPrint=OFF, historyPrint=OFF, userSubroutine='', scratch='', 
+    resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=1, numGPUs=0)
+mdb.jobs['exp'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "exp.inp".
+mdb.ModelFromInputFile(name='she', 
+    inputFileName='/home/vtac/NODE_abaqus/UANISO/she.inp')
+#: The model "she" has been created.
+#: The part "PART-1" has been imported from the input file.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "she" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+a = mdb.models['she'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+p = mdb.models['she'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p1 = mdb.models['exp'].parts['ES_FACE']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+mdb.models['exp'].Material(name='GOH-Copy', 
+    objectToCopy=mdb.models['exp'].materials['GOH'])
+del mdb.models['exp'].materials['GOH-Copy']
+p1 = mdb.models['she'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+mdb.models['she'].Material(name='GOH')
+mdb.models['she'].materials['GOH'].Hyperelastic(materialType=ANISOTROPIC, 
+    anisotropicType=HOLZAPFEL, localDirections=2, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['she'].sections['Section-1-SET-1'].setValues(material='GOH', 
+    thickness=None)
+a = mdb.models['she'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.Job(name='she', model='she', description='', type=ANALYSIS, atTime=None, 
+    waitMinutes=0, waitHours=0, queue=None, memory=90, memoryUnits=PERCENTAGE, 
+    getMemoryFromAnalysis=True, explicitPrecision=SINGLE, 
+    nodalOutputPrecision=SINGLE, echoPrint=OFF, modelPrint=OFF, 
+    contactPrint=OFF, historyPrint=OFF, userSubroutine='', scratch='', 
+    resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=1, numGPUs=0)
+mdb.jobs['she'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "she.inp".
+mdb.ModelFromInputFile(name='tor', 
+    inputFileName='/home/vtac/NODE_abaqus/UANISO/tor.inp')
+#: The model "tor" has been created.
+#: The part "PART-1" has been imported from the input file.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "tor" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+a = mdb.models['tor'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+p1 = mdb.models['tor'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+mdb.models['tor'].Material(name='GOH')
+mdb.models['tor'].materials['GOH'].Hyperelastic(materialType=ANISOTROPIC, 
+    anisotropicType=HOLZAPFEL, localDirections=2, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['tor'].sections['Section-1-SET-1'].setValues(material='GOH', 
+    thickness=None)
+a = mdb.models['tor'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.Job(name='tor', model='tor', description='', type=ANALYSIS, atTime=None, 
+    waitMinutes=0, waitHours=0, queue=None, memory=90, memoryUnits=PERCENTAGE, 
+    getMemoryFromAnalysis=True, explicitPrecision=SINGLE, 
+    nodalOutputPrecision=SINGLE, echoPrint=OFF, modelPrint=OFF, 
+    contactPrint=OFF, historyPrint=OFF, userSubroutine='', scratch='', 
+    resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=1, numGPUs=0)
+mdb.ModelFromInputFile(name='uni', 
+    inputFileName='/home/vtac/NODE_abaqus/UANISO/uni.inp')
+#: The model "uni" has been created.
+#: The part "PART-1" has been imported from the input file.
+#: 
+#: WARNING: The following keywords/parameters are not yet supported by the input file reader:
+#: ---------------------------------------------------------------------------------
+#: *PREPRINT
+#: The model "uni" has been imported from an input file. 
+#: Please scroll up to check for error and warning messages.
+a = mdb.models['uni'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+p1 = mdb.models['uni'].parts['PART-1']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+mdb.models['uni'].Material(name='GOH')
+mdb.models['uni'].materials['GOH'].Hyperelastic(materialType=ANISOTROPIC, 
+    anisotropicType=HOLZAPFEL, localDirections=2, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['uni'].sections['Section-1-SET-1'].setValues(material='GOH', 
+    thickness=None)
+a = mdb.models['uni'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+mdb.Job(name='uni', model='uni', description='', type=ANALYSIS, atTime=None, 
+    waitMinutes=0, waitHours=0, queue=None, memory=90, memoryUnits=PERCENTAGE, 
+    getMemoryFromAnalysis=True, explicitPrecision=SINGLE, 
+    nodalOutputPrecision=SINGLE, echoPrint=OFF, modelPrint=OFF, 
+    contactPrint=OFF, historyPrint=OFF, userSubroutine='', scratch='', 
+    resultsFormat=ODB, multiprocessingMode=DEFAULT, numCpus=1, numGPUs=0)
+mdb.jobs['uni'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "uni.inp".
+mdb.jobs['tor'].writeInput(consistencyChecking=OFF)
+#: The job input file has been written to "tor.inp".
+mdb.saveAs(pathName='/home/vtac/NODE_abaqus/GOH/GOH_all')
+#: The model database has been saved to "/home/vtac/NODE_abaqus/GOH/GOH_all.cae".

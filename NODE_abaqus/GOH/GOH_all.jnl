@@ -1,0 +1,78 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.ModelFromInputFile(inputFileName='/home/vtac/NODE_abaqus/UANISO/uni.inp', 
+    name='uni')
+mdb.ModelFromInputFile(inputFileName='/home/vtac/NODE_abaqus/UANISO/exp.inp', 
+    name='exp')
+del mdb.models['Model-1']
+mdb.models['exp'].Material(name='GOH')
+mdb.models['exp'].materials['GOH'].Hyperelastic(anisotropicType=HOLZAPFEL, 
+    localDirections=2, materialType=ANISOTROPIC, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['exp'].sections['Section-3-_PICKEDSET2'].setValues(material='GOH', 
+    thickness=None)
+del mdb.models['uni']
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='exp', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='exp', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.ModelFromInputFile(inputFileName='/home/vtac/NODE_abaqus/UANISO/she.inp', 
+    name='she')
+mdb.models['exp'].Material(name='GOH-Copy', objectToCopy=
+    mdb.models['exp'].materials['GOH'])
+del mdb.models['exp'].materials['GOH-Copy']
+mdb.models['she'].Material(name='GOH')
+mdb.models['she'].materials['GOH'].Hyperelastic(anisotropicType=HOLZAPFEL, 
+    localDirections=2, materialType=ANISOTROPIC, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['she'].sections['Section-1-SET-1'].setValues(material='GOH', 
+    thickness=None)
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='she', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='she', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.ModelFromInputFile(inputFileName='/home/vtac/NODE_abaqus/UANISO/tor.inp', 
+    name='tor')
+mdb.models['tor'].Material(name='GOH')
+mdb.models['tor'].materials['GOH'].Hyperelastic(anisotropicType=HOLZAPFEL, 
+    localDirections=2, materialType=ANISOTROPIC, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['tor'].sections['Section-1-SET-1'].setValues(material='GOH', 
+    thickness=None)
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='tor', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='tor', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.ModelFromInputFile(inputFileName='/home/vtac/NODE_abaqus/UANISO/uni.inp', 
+    name='uni')
+mdb.models['uni'].Material(name='GOH')
+mdb.models['uni'].materials['GOH'].Hyperelastic(anisotropicType=HOLZAPFEL, 
+    localDirections=2, materialType=ANISOTROPIC, table=((0.005117, 2.0, 
+    0.51366, 59.149, 0.27444), ))
+mdb.models['uni'].sections['Section-1-SET-1'].setValues(material='GOH', 
+    thickness=None)
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='uni', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='uni', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by vtac on 2021_12_15-20.17.02; build 2020 2019_09_13-13.49.31 163176
